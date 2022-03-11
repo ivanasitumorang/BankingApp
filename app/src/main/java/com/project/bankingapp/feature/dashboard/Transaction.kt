@@ -7,7 +7,7 @@ data class Transaction(
     val amount: Double,
     val date: DateTime,
     val type: TransactionType,
-    val recipientName: Recipient
+    val recipient: Recipient
 ) {
 //    data class Recipient(
 //        val accountNo: String,
@@ -30,21 +30,21 @@ val transactions1 = listOf(
         amount = 1_000.0,
         date = DateTime("2022-03-11T11:47:04.706Z"),
         type = TransactionType.Expense,
-        recipientName = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
+        recipient = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
     ),
     Transaction(
         id = "",
         amount = 2.0,
         date = DateTime("2022-03-11T12:47:04.706Z"),
         type = TransactionType.Income,
-        recipientName = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
+        recipient = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
     ),
     Transaction(
         id = "",
         amount = 30.0,
         date = DateTime("2022-03-11T08:47:04.706Z"),
         type = TransactionType.Income,
-        recipientName = Recipient(accountNo = "6554-630-9653", accountHolder = "Andy")
+        recipient = Recipient(accountNo = "6554-630-9653", accountHolder = "Andy")
     )
 )
 
@@ -54,25 +54,22 @@ val transactions2 = listOf(
         amount = 20_000.0,
         date = DateTime("2022-05-11T11:47:04.706Z"),
         type = TransactionType.Expense,
-        recipientName = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
+        recipient = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
     ),
     Transaction(
         id = "",
         amount = 50.0,
         date = DateTime("2022-05-11T12:47:04.706Z"),
         type = TransactionType.Expense,
-        recipientName = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
+        recipient = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
     )
 )
 
-val trxHistory1 = listOf(
+val trxHistoryList = listOf(
     TransactionHistory(
         dateString = DateTime("2022-03-11T12:47:04.706Z").toString("DD MMM YYYY"),
         transactions = transactions1
-    )
-)
-
-val trxHistory2 = listOf(
+    ),
     TransactionHistory(
         dateString = DateTime("2022-03-11T12:47:04.706Z").toString("DD MMM YYYY"),
         transactions = transactions2

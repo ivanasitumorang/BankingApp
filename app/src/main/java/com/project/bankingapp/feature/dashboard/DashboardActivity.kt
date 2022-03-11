@@ -11,6 +11,8 @@ class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
 
+    private lateinit var trxHistoryAdapter: TransactionHistoryAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -18,10 +20,12 @@ class DashboardActivity : AppCompatActivity() {
 
         setupUI()
         setupUIListener()
+        trxHistoryAdapter.setTrxHistoryList(trxHistoryList)
     }
 
     private fun setupUI() = with(binding) {
-
+        trxHistoryAdapter = TransactionHistoryAdapter()
+        rvTrxHistory.adapter = trxHistoryAdapter
     }
 
     private fun setupUIListener() = with(binding) {

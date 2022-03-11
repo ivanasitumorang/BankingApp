@@ -1,5 +1,6 @@
 package com.project.bankingapp.feature.dashboard
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +10,19 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
 
     private val _trxHistoryList = mutableListOf<TransactionHistory>()
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setTrxHistoryList(data: List<TransactionHistory>) {
+        _trxHistoryList.clear()
+        _trxHistoryList.addAll(data)
+        notifyDataSetChanged()
+    }
+
     class TrxHistoryVH(private val binding: ItemTrxHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(trx: TransactionHistory) {
-
+        fun bind(trx: TransactionHistory) = with(binding) {
+            tvDate.text = trx.dateString
+            val itemAdapter = TransactionItemAdapter(trx.transactions)
+            rvTransaction.adapter = itemAdapter
         }
     }
 
