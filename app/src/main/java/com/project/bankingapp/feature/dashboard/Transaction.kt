@@ -8,7 +8,12 @@ data class Transaction(
     val date: DateTime,
     val type: TransactionType,
     val recipientName: Recipient
-)
+) {
+//    data class Recipient(
+//        val accountNo: String,
+//        val accountHolder: String
+//    )
+}
 
 enum class TransactionType {
     Income, Expense
