@@ -1,5 +1,6 @@
 package com.project.bankingapp.feature
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.project.bankingapp.common.showToast
@@ -20,14 +21,19 @@ class LoginActivity : AppCompatActivity() {
     private fun setupUIListener() = with(binding) {
         btnLogin.setOnClickListener {
             // todo: verify if form empty
-            val usernameValid = etUsername.text.isNullOrEmpty()
-            val passwordValid = etPassword.text.isNullOrEmpty()
+            val username = etUsername.text.toString()
+            val password = etPassword.text.toString()
+
+            val usernameValid = username.isEmpty()
+            val passwordValid = password.isEmpty()
 
             tilUsername.isErrorEnabled = usernameValid
             tilPassword.isErrorEnabled = passwordValid
 
-            if (usernameValid && passwordValid) {
-                showToast("click button login -> verify data")
+            if (username == "test" && password == "asdasd") {
+                // todo : show loading
+                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                finish()
             } else {
                 if (!usernameValid) {
                     tilUsername.error = "Username is required"

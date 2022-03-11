@@ -1,5 +1,6 @@
 package com.project.bankingapp.feature
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.project.bankingapp.common.showToast
@@ -20,6 +21,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun setupUIListener() = with(binding) {
         tvLogout.setOnClickListener {
             showToast("logout")
+            startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
+            finishAffinity()
         }
 
         btnTransfer.setOnClickListener {
