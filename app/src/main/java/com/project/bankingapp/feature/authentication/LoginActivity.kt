@@ -1,10 +1,11 @@
-package com.project.bankingapp.feature
+package com.project.bankingapp.feature.authentication
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityLoginBinding
+import com.project.bankingapp.feature.dashboard.DashboardActivity
 
 class LoginActivity : AppCompatActivity() {
 

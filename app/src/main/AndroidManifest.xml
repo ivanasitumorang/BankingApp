@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BankingApp">
         <activity
-            android:name=".feature.TransferActivity"
+            android:name=".feature.transfer.TransferActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.DashboardActivity"
+            android:name=".feature.dashboard.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.LoginActivity"
+            android:name=".feature.authentication.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.RegisterActivity"
+            android:name=".feature.authentication.RegisterActivity"
             android:exported="false" />
     </application>
 

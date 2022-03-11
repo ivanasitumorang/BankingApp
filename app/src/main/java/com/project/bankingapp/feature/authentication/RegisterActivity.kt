@@ -1,12 +1,12 @@
-package com.project.bankingapp.feature
+package com.project.bankingapp.feature.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.project.bankingapp.R
 
-class TransferActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transfer)
+        setContentView(R.layout.activity_register)
     }
 }
