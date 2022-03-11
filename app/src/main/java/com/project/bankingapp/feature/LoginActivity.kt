@@ -24,11 +24,11 @@ class LoginActivity : AppCompatActivity() {
             val username = etUsername.text.toString()
             val password = etPassword.text.toString()
 
-            val usernameValid = username.isEmpty()
-            val passwordValid = password.isEmpty()
+            val usernameValid = username.isNotEmpty()
+            val passwordValid = password.isNotEmpty()
 
-            tilUsername.isErrorEnabled = usernameValid
-            tilPassword.isErrorEnabled = passwordValid
+            tilUsername.isErrorEnabled = !usernameValid
+            tilPassword.isErrorEnabled = !passwordValid
 
             if (username == "test" && password == "asdasd") {
                 // todo : show loading

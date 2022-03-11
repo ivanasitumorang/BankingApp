@@ -2,7 +2,6 @@
 <resources>
 
     <style name="Widget.Button.Normal" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">@color/brown_700</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
     </style>
@@ -10,7 +9,6 @@
     <style name="Widget.Button.Inverse" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/brown_700</item>
         <item name="strokeWidth">2dp</item>
-        <item name="android:textColor">@color/brown_700</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
     </style>
