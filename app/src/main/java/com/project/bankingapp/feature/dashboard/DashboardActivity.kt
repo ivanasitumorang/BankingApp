@@ -16,7 +16,12 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupUI()
         setupUIListener()
+    }
+
+    private fun setupUI() = with(binding) {
+
     }
 
     private fun setupUIListener() = with(binding) {
