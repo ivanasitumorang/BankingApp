@@ -4,10 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.ScreenState
-import com.project.bankingapp.data.remote.ErrorRes
-import com.project.bankingapp.data.remote.LoginRes
-import com.project.bankingapp.data.remote.RegisterRes
 import com.project.bankingapp.repository.BankingRepository
+import com.project.bankingapp.util.DummyData
 import com.project.bankingapp.util.TestCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -48,17 +46,11 @@ class AuthenticationVMTest {
     @Test
     fun `login successfully`() {
         testCoroutineRule.runBlockingTest {
-            val loginRes = LoginRes(
-                status = "test",
-                token = "test",
-                username = "test",
-                accountNo = "test"
-            )
-            doReturn(Result.Success(loginRes))
+            doReturn(Result.Success(DummyData.loginRes))
                 .`when`(repository)
                 .login(anyString(), anyString())
 
-            viewModel.login("", "")
+            viewModel.login("test", "test")
             viewModel.loginResult.observeForever(observerLoginResult)
 
             runBlockingTest {
@@ -74,16 +66,11 @@ class AuthenticationVMTest {
     @Test
     fun `login failed`() {
         testCoroutineRule.runBlockingTest {
-            val errorRes = ErrorRes(
-                status = "test",
-                error = "test"
-            )
-            val exception = Exception(errorRes.error)
-            doReturn(Result.Error(0, exception))
+            doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .login(anyString(), anyString())
 
-            viewModel.login("", "")
+            viewModel.login("test", "test")
             viewModel.loginResult.observeForever(observerLoginResult)
 
             runBlockingTest {
@@ -91,7 +78,7 @@ class AuthenticationVMTest {
             }
 
             verify(observerLoginResult).onChanged(ScreenState.Loading)
-            verify(observerLoginResult).onChanged(ScreenState.Error(exception))
+            verify(observerLoginResult).onChanged(ScreenState.Error(DummyData.exception))
             viewModel.loginResult.removeObserver(observerLoginResult)
         }
     }
@@ -99,15 +86,11 @@ class AuthenticationVMTest {
     @Test
     fun `register successfully`() {
         testCoroutineRule.runBlockingTest {
-            val registerRes = RegisterRes(
-                status = "test",
-                token = "test"
-            )
-            doReturn(Result.Success(registerRes))
+            doReturn(Result.Success(DummyData.registerRes))
                 .`when`(repository)
                 .register(anyString(), anyString())
 
-            viewModel.register("", "")
+            viewModel.register("test", "test")
             viewModel.registerResult.observeForever(observerRegisterResult)
 
             runBlockingTest {
@@ -123,16 +106,11 @@ class AuthenticationVMTest {
     @Test
     fun `register failed`() {
         testCoroutineRule.runBlockingTest {
-            val errorRes = ErrorRes(
-                status = "test",
-                error = "test"
-            )
-            val exception = Exception(errorRes.error)
-            doReturn(Result.Error(0, exception))
+            doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .register(anyString(), anyString())
 
-            viewModel.register("", "")
+            viewModel.register("test", "test")
             viewModel.registerResult.observeForever(observerRegisterResult)
 
             runBlockingTest {
@@ -140,7 +118,7 @@ class AuthenticationVMTest {
             }
 
             verify(observerRegisterResult).onChanged(ScreenState.Loading)
-            verify(observerRegisterResult).onChanged(ScreenState.Error(exception))
+            verify(observerRegisterResult).onChanged(ScreenState.Error(DummyData.exception))
             viewModel.registerResult.removeObserver(observerRegisterResult)
         }
     }
