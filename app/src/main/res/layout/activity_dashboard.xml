@@ -1,180 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown_200"
+    android:id="@+id/swipeRefresh"
     tools:context=".feature.dashboard.DashboardActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/dashboard_logout"
-        android:textColor="@color/peach_400"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gHeadlineEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvSummary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-46dp"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="8dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true"
-        app:contentPaddingBottom="24dp"
-        app:contentPaddingLeft="24dp"
-        app:contentPaddingRight="20dp"
-        app:contentPaddingTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/gHeadlineEnd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLogout">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dashboard_account_balance_label"
-                android:textColor="@color/brown_700"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAccountBalance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/brown_700"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                tools:text="SGD 21,421.33" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/dashboard_account_no_label"
-                android:textColor="@color/brown_300"
-                android:textSize="12sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAccountNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/brown_700"
-                android:textStyle="bold"
-                tools:text="3212-321-9923" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/dashboard_account_name_label"
-                android:textColor="@color/brown_300"
-                android:textSize="12sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAccounName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/brown_700"
-                android:textStyle="bold"
-                tools:text="Donald Trump" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/loadingSummary"
-        style="@style/SpinKitView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:visibility="gone"
-        app:SpinKit_Color="@color/purple_300"
-        app:SpinKit_Style="CubeGrid"
-        app:layout_constraintBottom_toBottomOf="@+id/cvSummary"
-        app:layout_constraintEnd_toStartOf="@+id/gHeadlineEnd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cvSummary"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTrxHistoryLabel"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="4dp"
-        android:text="@string/dashboard_transaction_history_label"
-        android:textColor="@color/brown_700"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvSummary" />
+        android:background="@color/brown_200"
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTrxHistory"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/btnTransfer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTrxHistoryLabel"
-        tools:itemCount="3"
-        tools:listitem="@layout/item_trx_history" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/dashboard_logout"
+            android:textColor="@color/peach_400"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/loadingList"
-        style="@style/SpinKitView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:visibility="gone"
-        app:SpinKit_Color="@color/purple_300"
-        app:SpinKit_Style="CubeGrid"
-        app:layout_constraintBottom_toTopOf="@id/btnTransfer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTrxHistoryLabel"
-        tools:visibility="visible" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gHeadlineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnTransfer"
-        style="@style/Widget.Button.Normal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/dashboard_btn_transfer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-46dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="8dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingBottom="24dp"
+            app:contentPaddingLeft="24dp"
+            app:contentPaddingRight="20dp"
+            app:contentPaddingTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/gHeadlineEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLogout">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_account_balance_label"
+                    android:textColor="@color/brown_700"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAccountBalance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/brown_700"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="SGD 21,421.33" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/dashboard_account_no_label"
+                    android:textColor="@color/brown_300"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAccountNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/brown_700"
+                    android:textStyle="bold"
+                    tools:text="3212-321-9923" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/dashboard_account_name_label"
+                    android:textColor="@color/brown_300"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAccounName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/brown_700"
+                    android:textStyle="bold"
+                    tools:text="Donald Trump" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/loadingSummary"
+            style="@style/SpinKitView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/purple_300"
+            app:SpinKit_Style="CubeGrid"
+            app:layout_constraintBottom_toBottomOf="@+id/cvSummary"
+            app:layout_constraintEnd_toStartOf="@+id/gHeadlineEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cvSummary"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTrxHistoryLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="4dp"
+            android:text="@string/dashboard_transaction_history_label"
+            android:textColor="@color/brown_700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvSummary" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTrxHistory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/btnTransfer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTrxHistoryLabel"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_trx_history" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/loadingList"
+            style="@style/SpinKitView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/purple_300"
+            app:SpinKit_Style="CubeGrid"
+            app:layout_constraintBottom_toTopOf="@id/btnTransfer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrxHistoryLabel"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTransfer"
+            style="@style/Widget.Button.Normal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/dashboard_btn_transfer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

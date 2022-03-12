@@ -33,14 +33,12 @@ class DashboardActivity : AppCompatActivity() {
         setupUIListener()
         setupDataObserver()
 
-        viewModel.getAccountSummary()
-        viewModel.getTransactionHistoryList()
+        populateData()
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        viewModel.getAccountSummary()
-        viewModel.getTransactionHistoryList()
+        populateData()
     }
 
     private fun setupDataObserver() {
@@ -99,5 +97,16 @@ class DashboardActivity : AppCompatActivity() {
         btnTransfer.setOnClickListener {
             startActivity(Intent(this@DashboardActivity, TransferActivity::class.java))
         }
+
+        swipeRefresh.setOnRefreshListener {
+            swipeRefresh.isRefreshing = true
+            populateData()
+            swipeRefresh.isRefreshing = false
+        }
+    }
+
+    private fun populateData() {
+        viewModel.getAccountSummary()
+        viewModel.getTransactionHistoryList()
     }
 }
