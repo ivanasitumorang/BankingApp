@@ -6,6 +6,7 @@ import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.data.remote.ErrorRes
 import com.project.bankingapp.data.remote.LoginRes
+import com.project.bankingapp.data.remote.RegisterRes
 import com.project.bankingapp.repository.BankingRepository
 import com.project.bankingapp.util.TestCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +33,10 @@ class AuthenticationVMTest {
     private lateinit var repository: BankingRepository
 
     @Mock
-    private lateinit var loginResultObserver: Observer<ScreenState<Unit>>
+    private lateinit var observerLoginResult: Observer<ScreenState<Unit>>
+
+    @Mock
+    private lateinit var observerRegisterResult: Observer<ScreenState<Unit>>
 
     private lateinit var viewModel: AuthenticationVM
 
@@ -55,15 +59,15 @@ class AuthenticationVMTest {
                 .login(anyString(), anyString())
 
             viewModel.login("", "")
-            viewModel.loginResult.observeForever(loginResultObserver)
+            viewModel.loginResult.observeForever(observerLoginResult)
 
             runBlockingTest {
                 verify(repository).login(anyString(), anyString())
             }
 
-            verify(loginResultObserver).onChanged(ScreenState.Loading)
-            verify(loginResultObserver).onChanged(ScreenState.Success(Unit))
-            viewModel.loginResult.removeObserver(loginResultObserver)
+            verify(observerLoginResult).onChanged(ScreenState.Loading)
+            verify(observerLoginResult).onChanged(ScreenState.Success(Unit))
+            viewModel.loginResult.removeObserver(observerLoginResult)
         }
     }
 
@@ -80,15 +84,64 @@ class AuthenticationVMTest {
                 .login(anyString(), anyString())
 
             viewModel.login("", "")
-            viewModel.loginResult.observeForever(loginResultObserver)
+            viewModel.loginResult.observeForever(observerLoginResult)
 
             runBlockingTest {
                 verify(repository).login(anyString(), anyString())
             }
 
-            verify(loginResultObserver).onChanged(ScreenState.Loading)
-            verify(loginResultObserver).onChanged(ScreenState.Error(exception))
-            viewModel.loginResult.removeObserver(loginResultObserver)
+            verify(observerLoginResult).onChanged(ScreenState.Loading)
+            verify(observerLoginResult).onChanged(ScreenState.Error(exception))
+            viewModel.loginResult.removeObserver(observerLoginResult)
+        }
+    }
+
+    @Test
+    fun `register successfully`() {
+        testCoroutineRule.runBlockingTest {
+            val registerRes = RegisterRes(
+                status = "test",
+                token = "test"
+            )
+            doReturn(Result.Success(registerRes))
+                .`when`(repository)
+                .register(anyString(), anyString())
+
+            viewModel.register("", "")
+            viewModel.registerResult.observeForever(observerRegisterResult)
+
+            runBlockingTest {
+                verify(repository).register(anyString(), anyString())
+            }
+
+            verify(observerRegisterResult).onChanged(ScreenState.Loading)
+            verify(observerRegisterResult).onChanged(ScreenState.Success(Unit))
+            viewModel.registerResult.removeObserver(observerRegisterResult)
+        }
+    }
+
+    @Test
+    fun `register failed`() {
+        testCoroutineRule.runBlockingTest {
+            val errorRes = ErrorRes(
+                status = "test",
+                error = "test"
+            )
+            val exception = Exception(errorRes.error)
+            doReturn(Result.Error(0, exception))
+                .`when`(repository)
+                .register(anyString(), anyString())
+
+            viewModel.register("", "")
+            viewModel.registerResult.observeForever(observerRegisterResult)
+
+            runBlockingTest {
+                verify(repository).register(anyString(), anyString())
+            }
+
+            verify(observerRegisterResult).onChanged(ScreenState.Loading)
+            verify(observerRegisterResult).onChanged(ScreenState.Error(exception))
+            viewModel.registerResult.removeObserver(observerRegisterResult)
         }
     }
 }
