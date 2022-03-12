@@ -5,9 +5,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.suspendTryCatch
-import com.project.bankingapp.data.remote.api.BankingService
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
+import com.project.bankingapp.data.remote.api.BankingService
 import com.project.bankingapp.feature.dashboard.dto.Account
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.feature.dashboard.dto.Transaction
@@ -110,6 +110,25 @@ class BankingRepositoryImpl(
             val errorRes =
                 Gson().fromJson<ErrorRes>(response.errorBody()?.string(), type)
             Result.Error(code = response.code(), exception = Exception(errorRes.error))
+        }
+    }
+
+    override suspend fun transfer(
+        accountNo: String,
+        amount: Double,
+        description: String?
+    ): Result<TransferRes> = suspendTryCatch {
+        val response = service.transfer(
+            token = authenticationPref.getToken(),
+            transferReq = TransferReq(amount, description, accountNo)
+        )
+        if (response.isSuccessful) {
+            Result.Success(response.body() as TransferRes)
+        } else {
+            val type = object : TypeToken<ErrorRes>() {}.type
+            val errorRes =
+                Gson().fromJson<ErrorRes>(response.errorBody()?.string(), type)
+            Result.Error(code = response.code(), Exception(errorRes.error))
         }
     }
 

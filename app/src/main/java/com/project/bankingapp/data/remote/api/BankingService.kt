@@ -20,7 +20,10 @@ interface BankingService {
     ): Response<RegisterRes>
 
     @POST("transfer")
-    suspend fun transfer(): Response<*>
+    suspend fun transfer(
+        @Header("Authorization") token: String,
+        @Body transferReq: TransferReq
+    ): Response<TransferRes>
 
     @GET("balance")
     suspend fun getBalance(

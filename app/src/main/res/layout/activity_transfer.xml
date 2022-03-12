@@ -45,7 +45,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            tools:text="Ivana" />
+            tools:text="Ivana"
+            tools:ignore="LabelFor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPayeeNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
