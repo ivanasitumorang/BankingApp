@@ -8,8 +8,8 @@ import com.project.bankingapp.base.suspendTryCatch
 import com.project.bankingapp.data.BankingService
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
-import com.project.bankingapp.feature.dashboard.Account
-import com.project.bankingapp.feature.dashboard.AccountSummary
+import com.project.bankingapp.feature.dashboard.dto.Account
+import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.feature.dashboard.Transaction
 import com.project.bankingapp.feature.dashboard.TransactionType
 import org.joda.time.DateTime

@@ -1,4 +1,4 @@
-package com.project.bankingapp.feature.dashboard
+package com.project.bankingapp.feature.dashboard.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.project.bankingapp.R
 import com.project.bankingapp.databinding.ItemTransactionBinding
+import com.project.bankingapp.feature.dashboard.Transaction
+import com.project.bankingapp.feature.dashboard.TransactionType
 
 class TransactionItemAdapter(private val trxItems: List<Transaction>) :
     RecyclerView.Adapter<TransactionItemAdapter.TransactionItemVH>() {

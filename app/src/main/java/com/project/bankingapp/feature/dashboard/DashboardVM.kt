@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.base.onError
 import com.project.bankingapp.base.onSuccess
+import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.repository.BankingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

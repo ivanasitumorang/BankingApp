@@ -1,5 +1,6 @@
 package com.project.bankingapp.feature.dashboard
 
+import com.project.bankingapp.feature.dashboard.dto.Account
 import org.joda.time.DateTime
 
 data class Transaction(

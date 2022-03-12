@@ -1,10 +1,11 @@
-package com.project.bankingapp.feature.dashboard
+package com.project.bankingapp.feature.dashboard.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.bankingapp.databinding.ItemTrxHistoryBinding
+import com.project.bankingapp.feature.dashboard.TransactionHistory
 
 class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter.TrxHistoryVH>() {
 

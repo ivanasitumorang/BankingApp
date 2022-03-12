@@ -10,6 +10,8 @@ import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityDashboardBinding
 import com.project.bankingapp.feature.authentication.LoginActivity
+import com.project.bankingapp.feature.dashboard.adapter.TransactionHistoryAdapter
+import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import dagger.hilt.android.AndroidEntryPoint
 
 
