@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.project.bankingapp.R
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.databinding.ActivityDashboardBinding
@@ -87,6 +88,14 @@ class DashboardActivity : AppCompatActivity() {
     private fun setupUI() = with(binding) {
         trxHistoryAdapter = TransactionHistoryAdapter()
         rvTrxHistory.adapter = trxHistoryAdapter
+        rvTrxHistory.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val topRowVerticalPosition =
+                    if (recyclerView.childCount == 0) 0 else recyclerView.getChildAt(0).top
+                binding.swipeRefresh.isEnabled = topRowVerticalPosition >= 0
+            }
+        })
     }
 
     private fun setupUIListener() = with(binding) {
