@@ -1,6 +1,6 @@
 package com.project.bankingapp.util
 
-import com.project.bankingapp.feature.dashboard.dto.Account
+import com.project.bankingapp.common.dto.Account
 import com.project.bankingapp.feature.dashboard.dto.Transaction
 import com.project.bankingapp.feature.dashboard.dto.TransactionHistory
 import com.project.bankingapp.feature.dashboard.dto.TransactionType

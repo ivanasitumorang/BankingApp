@@ -5,10 +5,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.suspendTryCatch
+import com.project.bankingapp.common.dto.Account
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
 import com.project.bankingapp.data.remote.api.BankingService
-import com.project.bankingapp.feature.dashboard.dto.Account
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.feature.dashboard.dto.Transaction
 import com.project.bankingapp.feature.dashboard.dto.TransactionType
@@ -70,21 +70,19 @@ class BankingRepositoryImpl(
         Result.Success(accountSummary)
     }
 
-    override suspend fun getPayees(): Result<PayeesRes> = suspendTryCatch {
+    override suspend fun getPayees(): Result<List<Account>> = suspendTryCatch {
         val response = service.getPayees(authenticationPref.getToken())
         if (response.isSuccessful) {
-
-            Result.Success(response.body() as PayeesRes)
+            val payeeRes = response.body() as PayeesRes
+            val payeeList = payeeRes.data.map {
+                Account(no = it.accountNo, name = it.name)
+            }
+            Result.Success(payeeList)
         } else {
             val type = object : TypeToken<ErrorRes>() {}.type
             val errorRes =
                 Gson().fromJson<ErrorRes>(response.errorBody()?.string(), type)
-            Result.Success(
-                PayeesRes(
-                    status = errorRes.status,
-                    data = emptyList()
-                )
-            )
+            Result.Error(response.code(), Exception(errorRes.error))
         }
     }
 

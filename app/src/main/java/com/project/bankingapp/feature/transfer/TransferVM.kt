@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.base.onError
 import com.project.bankingapp.base.onSuccess
+import com.project.bankingapp.common.dto.Account
 import com.project.bankingapp.common.toDoubleAmount
 import com.project.bankingapp.repository.BankingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,27 @@ class TransferVM @Inject constructor(
             }.onError { _, exception ->
                 _transferResult.postValue(ScreenState.Error(exception))
             }
+        }
+    }
+
+    private val _payeeList = MutableLiveData<ScreenState<List<Account>>>()
+    val payeeList: LiveData<ScreenState<List<Account>>> get() = _payeeList
+    fun getPayeeList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _payeeList.postValue(ScreenState.Loading)
+            repository.getPayees().onSuccess {
+                _payeeList.postValue(ScreenState.Success(it))
+            }.onError { _, exception ->
+                _payeeList.postValue(ScreenState.Error(exception))
+            }
+        }
+    }
+
+    private val _selectedPayee = MutableLiveData<Account>()
+    val selectedPayee: LiveData<Account> get() = _selectedPayee
+    fun selectPayee(payee: Account) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _selectedPayee.value = payee
         }
     }
 }

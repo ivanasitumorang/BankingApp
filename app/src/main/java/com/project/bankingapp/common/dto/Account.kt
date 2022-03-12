@@ -1,4 +1,4 @@
-package com.project.bankingapp.feature.dashboard.dto
+package com.project.bankingapp.common.dto
 
 data class Account(
     val no: String,

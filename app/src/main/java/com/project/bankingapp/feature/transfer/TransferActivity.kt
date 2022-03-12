@@ -1,5 +1,6 @@
 package com.project.bankingapp.feature.transfer
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -42,11 +43,21 @@ class TransferActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.selectedPayee.observe(this) {
+            binding.tvPayeeName.setText(it.name)
+            binding.tvPayeeNo.text = it.no
+        }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupUIListener() = with(binding) {
         ivBack.setOnClickListener {
             finish()
+        }
+
+        tvPayeeName.setOnClickListener {
+            PayeeListFragment().show(supportFragmentManager, PayeeListFragment.TAG)
         }
 
         btnTransfer.setOnClickListener {

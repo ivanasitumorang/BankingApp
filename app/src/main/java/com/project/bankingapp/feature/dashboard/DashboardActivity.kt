@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.project.bankingapp.R
 import com.project.bankingapp.base.ScreenState
-import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityDashboardBinding
 import com.project.bankingapp.feature.authentication.LoginActivity
 import com.project.bankingapp.feature.dashboard.adapter.TransactionHistoryAdapter
@@ -34,6 +33,12 @@ class DashboardActivity : AppCompatActivity() {
         setupUIListener()
         setupDataObserver()
 
+        viewModel.getAccountSummary()
+        viewModel.getTransactionHistoryList()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
         viewModel.getAccountSummary()
         viewModel.getTransactionHistoryList()
     }
@@ -83,7 +88,6 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupUIListener() = with(binding) {
         tvLogout.setOnClickListener {
-            showToast("logout")
             startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
             finishAffinity()
         }
