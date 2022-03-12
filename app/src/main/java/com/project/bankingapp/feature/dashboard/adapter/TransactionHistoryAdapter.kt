@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.bankingapp.databinding.ItemTrxHistoryBinding
-import com.project.bankingapp.feature.dashboard.TransactionHistory
+import com.project.bankingapp.feature.dashboard.dto.TransactionHistory
 
 class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter.TrxHistoryVH>() {
 

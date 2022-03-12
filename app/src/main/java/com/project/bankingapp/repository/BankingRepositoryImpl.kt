@@ -10,8 +10,8 @@ import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
 import com.project.bankingapp.feature.dashboard.dto.Account
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
-import com.project.bankingapp.feature.dashboard.Transaction
-import com.project.bankingapp.feature.dashboard.TransactionType
+import com.project.bankingapp.feature.dashboard.dto.Transaction
+import com.project.bankingapp.feature.dashboard.dto.TransactionType
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 

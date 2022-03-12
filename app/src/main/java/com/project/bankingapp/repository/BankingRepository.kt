@@ -4,7 +4,7 @@ import com.project.bankingapp.base.Result
 import com.project.bankingapp.data.remote.LoginRes
 import com.project.bankingapp.data.remote.PayeesRes
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
-import com.project.bankingapp.feature.dashboard.Transaction
+import com.project.bankingapp.feature.dashboard.dto.Transaction
 
 interface BankingRepository {
     suspend fun login(username: String, password: String): Result<LoginRes>
