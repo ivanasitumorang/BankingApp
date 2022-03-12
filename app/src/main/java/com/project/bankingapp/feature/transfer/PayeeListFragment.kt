@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.project.bankingapp.R
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.common.showToast
@@ -53,7 +54,6 @@ class PayeeListFragment : DialogFragment() {
     private fun setupUIListener() = with(binding) {
         ivBack.setOnClickListener { dismiss() }
         swipeRefresh.setOnRefreshListener {
-//            swipeRefresh.isRefreshing = true
             viewModel.getPayeeList()
             swipeRefresh.isRefreshing = false
         }
@@ -65,6 +65,14 @@ class PayeeListFragment : DialogFragment() {
             dismiss()
         }
         rvPayees.adapter = adapter
+        rvPayees.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val topRowVerticalPosition =
+                    if (recyclerView.childCount == 0) 0 else recyclerView.getChildAt(0).top
+                binding.swipeRefresh.isEnabled = topRowVerticalPosition >= 0
+            }
+        })
     }
 
     private fun setupDataObserver() {
