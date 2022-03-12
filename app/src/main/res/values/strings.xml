@@ -30,5 +30,11 @@
     <string name="dashboard_logout">Logout</string>
     <string name="dashboard_btn_transfer">Make Transfer</string>
 
+    <string name="transfer_title">Transfer</string>
+    <string name="transfer_payee_hint">Payee</string>
+    <string name="transfer_amount_hint">Amount</string>
+    <string name="transfer_description_hint">Description</string>
+    <string name="transfer_btn_transfer">Transfer Now</string>
+
     <string name="payee_list_title">Payee List</string>
 </resources>

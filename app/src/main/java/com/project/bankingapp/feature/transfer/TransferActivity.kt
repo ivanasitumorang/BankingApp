@@ -1,6 +1,5 @@
 package com.project.bankingapp.feature.transfer
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -50,7 +49,6 @@ class TransferActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun setupUIListener() = with(binding) {
         ivBack.setOnClickListener {
             finish()
