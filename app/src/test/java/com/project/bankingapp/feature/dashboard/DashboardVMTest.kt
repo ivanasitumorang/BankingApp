@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.ScreenState
-import com.project.bankingapp.data.remote.ErrorRes
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.feature.dashboard.dto.TransactionHistory
 import com.project.bankingapp.repository.BankingRepository
@@ -51,12 +50,7 @@ class DashboardVMTest {
     @Test
     fun `get account summary successfully`() {
         testCoroutineRule.runBlockingTest {
-            val accountSummary = AccountSummary(
-                name = "test",
-                balance = 1.0,
-                accountNo = "test"
-            )
-            Mockito.doReturn(Result.Success(accountSummary))
+            Mockito.doReturn(Result.Success(DummyData.accountSummary))
                 .`when`(repository)
                 .getAccountSummary()
 
@@ -68,7 +62,7 @@ class DashboardVMTest {
             }
 
             verify(observerAccountSummary).onChanged(ScreenState.Loading)
-            verify(observerAccountSummary).onChanged(ScreenState.Success(accountSummary))
+            verify(observerAccountSummary).onChanged(ScreenState.Success(DummyData.accountSummary))
             viewModel.accountSummary.removeObserver(observerAccountSummary)
         }
     }
@@ -76,12 +70,7 @@ class DashboardVMTest {
     @Test
     fun `get account summary failed`() {
         testCoroutineRule.runBlockingTest {
-            val errorRes = ErrorRes(
-                status = "test",
-                error = "test"
-            )
-            val exception = Exception(errorRes.error)
-            Mockito.doReturn(Result.Error(0, exception))
+            Mockito.doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .getAccountSummary()
 
@@ -93,7 +82,7 @@ class DashboardVMTest {
             }
 
             verify(observerAccountSummary).onChanged(ScreenState.Loading)
-            verify(observerAccountSummary).onChanged(ScreenState.Error(exception))
+            verify(observerAccountSummary).onChanged(ScreenState.Error(DummyData.exception))
             viewModel.accountSummary.removeObserver(observerAccountSummary)
         }
     }
@@ -123,12 +112,7 @@ class DashboardVMTest {
     @Test
     fun `get transaction history list failed`() {
         testCoroutineRule.runBlockingTest {
-            val errorRes = ErrorRes(
-                status = "test",
-                error = "test"
-            )
-            val exception = Exception(errorRes.error)
-            Mockito.doReturn(Result.Error(0, exception))
+            Mockito.doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .getTransactions()
 
@@ -140,7 +124,7 @@ class DashboardVMTest {
             }
 
             verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
-            verify(observerTrxHistoryList).onChanged(ScreenState.Error(exception))
+            verify(observerTrxHistoryList).onChanged(ScreenState.Error(DummyData.exception))
             viewModel.trxHistoryList.removeObserver(observerTrxHistoryList)
         }
     }

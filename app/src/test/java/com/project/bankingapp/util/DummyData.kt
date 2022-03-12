@@ -5,6 +5,7 @@ import com.project.bankingapp.data.remote.ErrorRes
 import com.project.bankingapp.data.remote.LoginRes
 import com.project.bankingapp.data.remote.RegisterRes
 import com.project.bankingapp.data.remote.TransferRes
+import com.project.bankingapp.feature.dashboard.dto.AccountSummary
 import com.project.bankingapp.feature.dashboard.dto.Transaction
 import com.project.bankingapp.feature.dashboard.dto.TransactionHistory
 import com.project.bankingapp.feature.dashboard.dto.TransactionType
@@ -24,6 +25,12 @@ object DummyData {
     val registerRes = RegisterRes(
         status = "test",
         token = "test"
+    )
+
+    val accountSummary = AccountSummary(
+        name = "test",
+        balance = 1.0,
+        accountNo = "test"
     )
 
     private val date = DateTime("2022-03-11T12:47:04.706Z", DateTimeZone.UTC)
