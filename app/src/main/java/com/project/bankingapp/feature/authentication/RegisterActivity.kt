@@ -65,7 +65,6 @@ class RegisterActivity : AppCompatActivity() {
             tilConfirmPassword.isErrorEnabled = !confirmPasswordValid
 
             if (usernameValid && passwordValid && password == confirmPassword) {
-                showToast("register berhasil")
                 viewModel.register(username, password)
             } else {
                 if (!usernameValid) {
