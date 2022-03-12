@@ -15,7 +15,9 @@ interface BankingService {
     ): Response<LoginRes>
 
     @POST("register")
-    suspend fun register(): Response<*>
+    suspend fun register(
+        @Body registerReq: RegisterReq
+    ): Response<RegisterRes>
 
     @POST("transfer")
     suspend fun transfer(): Response<*>

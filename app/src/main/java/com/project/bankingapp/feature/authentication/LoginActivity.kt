@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                     toggleScreenState(enable = false)
                 }
                 is ScreenState.Success -> {
-                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
                 }
                 is ScreenState.Error -> {

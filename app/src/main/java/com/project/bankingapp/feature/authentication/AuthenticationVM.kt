@@ -25,15 +25,22 @@ class AuthenticationVM @Inject constructor(
             _loginResult.postValue(ScreenState.Loading)
             repository.login(username, password).onSuccess {
                 _loginResult.postValue(ScreenState.Success(Unit))
-            }.onError { code, exception ->
+            }.onError { _, exception ->
                 _loginResult.postValue(ScreenState.Error(exception))
             }
         }
     }
 
+    private val _registerResult = MutableLiveData<ScreenState<Unit>>()
+    val registerResult: LiveData<ScreenState<Unit>> get() = _registerResult
     fun register(username: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-
+            _registerResult.postValue(ScreenState.Loading)
+            repository.register(username, password).onSuccess {
+                _registerResult.postValue(ScreenState.Success(Unit))
+            }.onError { _, exception ->
+                _registerResult.postValue(ScreenState.Error(exception))
+            }
         }
     }
 }

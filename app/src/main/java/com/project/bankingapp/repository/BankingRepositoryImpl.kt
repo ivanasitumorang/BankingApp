@@ -39,6 +39,26 @@ class BankingRepositoryImpl(
             }
         }
 
+    override suspend fun register(username: String, password: String): Result<RegisterRes> =
+        suspendTryCatch {
+            val response = service.register(RegisterReq(username, password))
+
+            if (response.isSuccessful) {
+                val registerRes = response.body() as RegisterRes
+                authenticationPref.setToken(registerRes.token)
+                Result.Success(registerRes)
+            } else {
+                val type = object : TypeToken<ErrorRes>() {}.type
+                val errorRes =
+                    Gson().fromJson<ErrorRes>(response.errorBody()?.string(), type)
+
+                Result.Error(
+                    code = response.code(),
+                    exception = Exception(errorRes.error)
+                )
+            }
+        }
+
     override suspend fun getAccountSummary(): Result<AccountSummary> = suspendTryCatch {
         val accountBalance = getAccountBalance()
         val name = JWT(authenticationPref.getToken()).getClaim("username").asString() ?: "-"
