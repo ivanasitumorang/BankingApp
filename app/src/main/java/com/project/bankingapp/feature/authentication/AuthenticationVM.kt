@@ -30,4 +30,10 @@ class AuthenticationVM @Inject constructor(
             }
         }
     }
+
+    fun register(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+        }
+    }
 }
