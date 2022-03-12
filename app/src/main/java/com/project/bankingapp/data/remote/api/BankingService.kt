@@ -1,4 +1,4 @@
-package com.project.bankingapp.data
+package com.project.bankingapp.data.remote.api
 
 import com.project.bankingapp.data.remote.*
 import retrofit2.Response

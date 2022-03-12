@@ -1,6 +1,6 @@
 package com.project.bankingapp.common.di
 
-import com.project.bankingapp.data.BankingService
+import com.project.bankingapp.data.remote.api.BankingService
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.repository.BankingRepository
 import com.project.bankingapp.repository.BankingRepositoryImpl

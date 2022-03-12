@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.project.bankingapp.base.Result
 import com.project.bankingapp.base.suspendTryCatch
-import com.project.bankingapp.data.BankingService
+import com.project.bankingapp.data.remote.api.BankingService
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
 import com.project.bankingapp.feature.dashboard.dto.Account

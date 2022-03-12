@@ -2,7 +2,7 @@ package com.project.bankingapp.common.di
 
 import android.content.Context
 import com.project.bankingapp.BuildConfig
-import com.project.bankingapp.data.BankingService
+import com.project.bankingapp.data.remote.api.BankingService
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
