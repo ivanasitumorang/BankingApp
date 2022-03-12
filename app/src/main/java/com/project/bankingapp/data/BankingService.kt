@@ -1,9 +1,6 @@
 package com.project.bankingapp.data
 
-import com.project.bankingapp.data.remote.BalanceRes
-import com.project.bankingapp.data.remote.LoginReq
-import com.project.bankingapp.data.remote.LoginRes
-import com.project.bankingapp.data.remote.PayeesRes
+import com.project.bankingapp.data.remote.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -34,5 +31,7 @@ interface BankingService {
     ): Response<PayeesRes>
 
     @GET("transactions")
-    suspend fun getTransactions(): Response<*>
+    suspend fun getTransactions(
+        @Header("Authorization") token: String
+    ): Response<TransactionsRes>
 }

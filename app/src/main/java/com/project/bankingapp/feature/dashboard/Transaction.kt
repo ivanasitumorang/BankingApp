@@ -7,7 +7,7 @@ data class Transaction(
     val amount: Double,
     val date: DateTime,
     val type: TransactionType,
-    val recipient: Recipient
+    val account: Account
 ) {
 //    data class Recipient(
 //        val accountNo: String,
@@ -30,21 +30,21 @@ val transactions1 = listOf(
         amount = 1_000.0,
         date = DateTime("2022-03-11T11:47:04.706Z"),
         type = TransactionType.Expense,
-        recipient = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
+        account = Account(no = "8768-232-8233", name = "Dia")
     ),
     Transaction(
         id = "",
         amount = 2.0,
         date = DateTime("2022-03-11T12:47:04.706Z"),
         type = TransactionType.Income,
-        recipient = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
+        account = Account(no = "8999-324-9632", name = "Siapa")
     ),
     Transaction(
         id = "",
         amount = 30.0,
         date = DateTime("2022-03-11T08:47:04.706Z"),
         type = TransactionType.Income,
-        recipient = Recipient(accountNo = "6554-630-9653", accountHolder = "Andy")
+        account = Account(no = "6554-630-9653", name = "Andy")
     )
 )
 
@@ -54,14 +54,14 @@ val transactions2 = listOf(
         amount = 20_000.0,
         date = DateTime("2022-05-11T11:47:04.706Z"),
         type = TransactionType.Expense,
-        recipient = Recipient(accountNo = "8768-232-8233", accountHolder = "Dia")
+        account = Account(no = "8768-232-8233", name = "Dia")
     ),
     Transaction(
         id = "",
         amount = 50.0,
         date = DateTime("2022-05-11T12:47:04.706Z"),
         type = TransactionType.Expense,
-        recipient = Recipient(accountNo = "8999-324-9632", accountHolder = "Siapa")
+        account = Account(no = "8999-324-9632", name = "Siapa")
     )
 )
 

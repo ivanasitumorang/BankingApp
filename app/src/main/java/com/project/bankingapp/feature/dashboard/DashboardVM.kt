@@ -11,16 +11,13 @@ import com.project.bankingapp.repository.BankingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.joda.time.format.DateTimeFormat
 import javax.inject.Inject
 
 @HiltViewModel
 class DashboardVM @Inject constructor(
     private val repository: BankingRepository
 ) : ViewModel() {
-
-    init {
-        getAccountSummary()
-    }
 
     private val _accountSummary = MutableLiveData<ScreenState<AccountSummary>>()
     val accountSummary: LiveData<ScreenState<AccountSummary>> get() = _accountSummary
@@ -31,6 +28,34 @@ class DashboardVM @Inject constructor(
                 _accountSummary.postValue(ScreenState.Success(it))
             }.onError { code, exception ->
                 _accountSummary.postValue(ScreenState.Error(exception))
+            }
+        }
+    }
+
+    private val _trxHistoryList = MutableLiveData<ScreenState<List<TransactionHistory>>>()
+    val trxHistoryList: LiveData<ScreenState<List<TransactionHistory>>> get() = _trxHistoryList
+    fun getTransactionHistoryList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _trxHistoryList.postValue(ScreenState.Loading)
+            repository.getTransactions().onSuccess {
+                val trxHistoryList = mutableListOf<TransactionHistory>()
+
+                it.groupBy { trx ->
+                    DateTimeFormat.forPattern("dd MMM YYYY").print(trx.date)
+                }.forEach { map ->
+                    val dateTime = map.key
+                    val list = map.value
+                    trxHistoryList.add(
+                        TransactionHistory(
+                            dateString = dateTime,
+                            transactions = list
+                        )
+                    )
+                }
+
+                _trxHistoryList.postValue(ScreenState.Success(trxHistoryList))
+            }.onError { code, exception ->
+                _trxHistoryList.postValue(ScreenState.Error(exception))
             }
         }
     }

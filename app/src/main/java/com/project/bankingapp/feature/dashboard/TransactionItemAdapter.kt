@@ -13,8 +13,8 @@ class TransactionItemAdapter(private val trxItems: List<Transaction>) :
     class TransactionItemVH(private val binding: ItemTransactionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(trx: Transaction) = with(binding) {
-            tvName.text = trx.recipient.accountHolder
-            tvAccount.text = trx.recipient.accountNo
+            tvName.text = trx.account.name
+            tvAccount.text = trx.account.no
 
             val context = root.context
             if (trx.type == TransactionType.Expense) {

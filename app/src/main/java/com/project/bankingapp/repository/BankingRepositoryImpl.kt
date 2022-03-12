@@ -8,7 +8,12 @@ import com.project.bankingapp.base.suspendTryCatch
 import com.project.bankingapp.data.BankingService
 import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.data.remote.*
+import com.project.bankingapp.feature.dashboard.Account
 import com.project.bankingapp.feature.dashboard.AccountSummary
+import com.project.bankingapp.feature.dashboard.Transaction
+import com.project.bankingapp.feature.dashboard.TransactionType
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 
 class BankingRepositoryImpl(
     private val authenticationPref: AuthenticationPref,
@@ -60,6 +65,31 @@ class BankingRepositoryImpl(
                     data = emptyList()
                 )
             )
+        }
+    }
+
+    override suspend fun getTransactions(): Result<List<Transaction>> = suspendTryCatch {
+        val response = service.getTransactions(authenticationPref.getToken())
+        if (response.isSuccessful) {
+            val trxRes = response.body() as TransactionsRes
+            val transactionList = trxRes.data.map {
+                Transaction(
+                    id = it.transactionId,
+                    amount = it.amount,
+                    date = DateTime(it.transactionDate, DateTimeZone.UTC),
+                    type =
+                    if (it.transactionType.equals("received", true))
+                        TransactionType.Income
+                    else TransactionType.Expense,
+                    account = Account(no = it.sender.no, name = it.sender.name)
+                )
+            }
+            Result.Success(transactionList)
+        } else {
+            val type = object : TypeToken<ErrorRes>() {}.type
+            val errorRes =
+                Gson().fromJson<ErrorRes>(response.errorBody()?.string(), type)
+            Result.Error(code = response.code(), exception = Exception(errorRes.error))
         }
     }
 

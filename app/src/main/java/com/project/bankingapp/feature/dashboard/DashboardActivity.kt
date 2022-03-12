@@ -29,7 +29,9 @@ class DashboardActivity : AppCompatActivity() {
         setupUI()
         setupUIListener()
         setupDataObserver()
-        trxHistoryAdapter.setTrxHistoryList(trxHistoryList)
+
+        viewModel.getAccountSummary()
+        viewModel.getTransactionHistoryList()
     }
 
     private fun setupDataObserver() {
@@ -44,6 +46,21 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 is ScreenState.Error -> {
                     binding.loadingSummary.visibility = View.GONE
+                }
+            }
+        }
+
+        viewModel.trxHistoryList.observe(this) {
+            when (it) {
+                is ScreenState.Loading -> {
+                    binding.loadingList.visibility = View.VISIBLE
+                }
+                is ScreenState.Success -> {
+                    binding.loadingList.visibility = View.GONE
+                    trxHistoryAdapter.setTrxHistoryList(it.data)
+                }
+                is ScreenState.Error -> {
+                    binding.loadingList.visibility = View.GONE
                 }
             }
         }
@@ -68,6 +85,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         btnTransfer.setOnClickListener {
+            viewModel.getTransactionHistoryList()
             showToast("navigate to page transfer")
         }
     }
