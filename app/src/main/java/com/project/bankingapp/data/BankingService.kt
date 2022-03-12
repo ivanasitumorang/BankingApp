@@ -1,13 +1,18 @@
 package com.project.bankingapp.data
 
+import com.project.bankingapp.base.BaseResponse
+import com.project.bankingapp.data.remote.LoginReq
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface BankingService {
 
     @POST("login")
-    suspend fun login(): Response<*>
+    suspend fun login(
+        @Body loginReq: LoginReq
+    ): Response<BaseResponse>
 
     @POST("register")
     suspend fun register(): Response<*>
