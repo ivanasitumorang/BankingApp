@@ -19,6 +19,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -63,11 +64,11 @@ class DashboardVMTest {
             viewModel.accountSummary.observeForever(observerAccountSummary)
 
             runBlockingTest {
-                Mockito.verify(repository).getAccountSummary()
+                verify(repository).getAccountSummary()
             }
 
-            Mockito.verify(observerAccountSummary).onChanged(ScreenState.Loading)
-            Mockito.verify(observerAccountSummary).onChanged(ScreenState.Success(accountSummary))
+            verify(observerAccountSummary).onChanged(ScreenState.Loading)
+            verify(observerAccountSummary).onChanged(ScreenState.Success(accountSummary))
             viewModel.accountSummary.removeObserver(observerAccountSummary)
         }
     }
@@ -88,11 +89,11 @@ class DashboardVMTest {
             viewModel.accountSummary.observeForever(observerAccountSummary)
 
             runBlockingTest {
-                Mockito.verify(repository).getAccountSummary()
+                verify(repository).getAccountSummary()
             }
 
-            Mockito.verify(observerAccountSummary).onChanged(ScreenState.Loading)
-            Mockito.verify(observerAccountSummary).onChanged(ScreenState.Error(exception))
+            verify(observerAccountSummary).onChanged(ScreenState.Loading)
+            verify(observerAccountSummary).onChanged(ScreenState.Error(exception))
             viewModel.accountSummary.removeObserver(observerAccountSummary)
         }
     }
@@ -110,11 +111,11 @@ class DashboardVMTest {
             viewModel.trxHistoryList.observeForever(observerTrxHistoryList)
 
             runBlockingTest {
-                Mockito.verify(repository).getTransactions()
+                verify(repository).getTransactions()
             }
 
-            Mockito.verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
-            Mockito.verify(observerTrxHistoryList).onChanged(ScreenState.Success(trxHistoryList))
+            verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
+            verify(observerTrxHistoryList).onChanged(ScreenState.Success(trxHistoryList))
             viewModel.trxHistoryList.removeObserver(observerTrxHistoryList)
         }
     }
@@ -135,11 +136,11 @@ class DashboardVMTest {
             viewModel.trxHistoryList.observeForever(observerTrxHistoryList)
 
             runBlockingTest {
-                Mockito.verify(repository).getTransactions()
+                verify(repository).getTransactions()
             }
 
-            Mockito.verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
-            Mockito.verify(observerTrxHistoryList).onChanged(ScreenState.Error(exception))
+            verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
+            verify(observerTrxHistoryList).onChanged(ScreenState.Error(exception))
             viewModel.trxHistoryList.removeObserver(observerTrxHistoryList)
         }
     }

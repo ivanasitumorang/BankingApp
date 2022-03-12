@@ -1,6 +1,8 @@
 package com.project.bankingapp.util
 
 import com.project.bankingapp.common.dto.Account
+import com.project.bankingapp.data.remote.ErrorRes
+import com.project.bankingapp.data.remote.TransferRes
 import com.project.bankingapp.feature.dashboard.dto.Transaction
 import com.project.bankingapp.feature.dashboard.dto.TransactionHistory
 import com.project.bankingapp.feature.dashboard.dto.TransactionType
@@ -39,5 +41,26 @@ object DummyData {
             dateString = DateTimeFormat.forPattern("dd MMM YYYY").print(date),
             transactions = transactions1
         )
+    )
+
+    val payeeList = listOf(
+        Account(no = "123", "test"),
+        Account(no = "124", "test 1"),
+        Account(no = "125", "test 2"),
+    )
+
+    val errorRes = ErrorRes(
+        status = "test",
+        error = "test"
+    )
+
+    val exception = Exception(errorRes.error)
+
+    val transferRes = TransferRes(
+        status = "test",
+        transactionId = "test",
+        amount = 20.0,
+        description = "test",
+        recipientAccount = "test"
     )
 }
