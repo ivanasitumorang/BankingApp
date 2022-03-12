@@ -52,6 +52,11 @@ class PayeeListFragment : DialogFragment() {
 
     private fun setupUIListener() = with(binding) {
         ivBack.setOnClickListener { dismiss() }
+        swipeRefresh.setOnRefreshListener {
+//            swipeRefresh.isRefreshing = true
+            viewModel.getPayeeList()
+            swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun setupUI() = with(binding) {

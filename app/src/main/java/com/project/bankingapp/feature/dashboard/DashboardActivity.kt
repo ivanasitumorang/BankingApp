@@ -99,7 +99,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         swipeRefresh.setOnRefreshListener {
-            swipeRefresh.isRefreshing = true
+//            swipeRefresh.isRefreshing = true
             populateData()
             swipeRefresh.isRefreshing = false
         }
