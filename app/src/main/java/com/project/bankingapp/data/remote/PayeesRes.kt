@@ -6,11 +6,10 @@ import androidx.annotation.Keep
 data class PayeesRes(
     val status: String,
     val data: List<PayeeRes>
-)
-
-@Keep
-data class PayeeRes(
-    val id: String,
-    val name: String,
-    val accountNo: String,
-)
+) {
+    data class PayeeRes(
+        val id: String,
+        val name: String,
+        val accountNo: String,
+    )
+}

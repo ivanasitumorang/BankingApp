@@ -15,6 +15,6 @@ data class TransactionsRes(
         val transactionDate: String,
         val description: String,
         val transactionType: String,
-        @SerializedName("sender", alternate = ["receipient"]) val sender: AccountRes
+        @SerializedName("sender", alternate = ["receipient"]) val account: AccountRes
     )
 }

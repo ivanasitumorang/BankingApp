@@ -101,7 +101,7 @@ class BankingRepositoryImpl(
                     if (it.transactionType.equals("received", true))
                         TransactionType.Income
                     else TransactionType.Expense,
-                    account = Account(no = it.sender.no, name = it.sender.name)
+                    account = Account(no = it.account.no, name = it.account.name)
                 )
             }
             Result.Success(transactionList)
