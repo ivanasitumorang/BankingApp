@@ -86,6 +86,10 @@ class BankingRepositoryImpl(
         }
     }
 
+    override suspend fun logout(): Result<Unit> = suspendTryCatch {
+        Result.Success(authenticationPref.clearAll())
+    }
+
     override suspend fun getTransactions(): Result<List<Transaction>> = suspendTryCatch {
         val response = service.getTransactions(authenticationPref.getToken())
         if (response.isSuccessful) {

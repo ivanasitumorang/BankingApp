@@ -73,6 +73,11 @@ class DashboardActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.logoutResult.observe(this) {
+            startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
+            finishAffinity()
+        }
     }
 
     private fun populateAccountSummary(data: AccountSummary) = with(binding) {
@@ -88,8 +93,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupUIListener() = with(binding) {
         tvLogout.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
-            finishAffinity()
+            viewModel.logout()
         }
 
         btnTransfer.setOnClickListener {

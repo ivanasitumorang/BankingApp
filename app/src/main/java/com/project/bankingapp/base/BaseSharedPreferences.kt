@@ -54,4 +54,8 @@ abstract class BaseSharedPreferences(private val context: Context) {
         return sharedPreferences.getInt(key, defValue)
     }
 
+    fun clearAll() {
+        sharedPreferences.edit().clear().apply()
+    }
+
 }

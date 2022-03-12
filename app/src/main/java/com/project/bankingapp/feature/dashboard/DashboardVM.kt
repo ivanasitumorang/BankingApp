@@ -61,4 +61,12 @@ class DashboardVM @Inject constructor(
             }
         }
     }
+
+    private val _logoutResult = MutableLiveData<Unit>()
+    val logoutResult: LiveData<Unit> get() = _logoutResult
+    fun logout() {
+        viewModelScope.launch {
+            repository.logout().onSuccess { _logoutResult.postValue(Unit) }
+        }
+    }
 }

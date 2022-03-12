@@ -18,6 +18,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.doReturn
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -41,6 +42,9 @@ class DashboardVMTest {
     @Mock
     private lateinit var observerTrxHistoryList: Observer<ScreenState<List<TransactionHistory>>>
 
+    @Mock
+    private lateinit var observerLogoutResult: Observer<Unit>
+
 
     @Before
     fun setUp() {
@@ -50,7 +54,7 @@ class DashboardVMTest {
     @Test
     fun `get account summary successfully`() {
         testCoroutineRule.runBlockingTest {
-            Mockito.doReturn(Result.Success(DummyData.accountSummary))
+            doReturn(Result.Success(DummyData.accountSummary))
                 .`when`(repository)
                 .getAccountSummary()
 
@@ -70,7 +74,7 @@ class DashboardVMTest {
     @Test
     fun `get account summary failed`() {
         testCoroutineRule.runBlockingTest {
-            Mockito.doReturn(Result.Error(0, DummyData.exception))
+            doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .getAccountSummary()
 
@@ -92,7 +96,7 @@ class DashboardVMTest {
         testCoroutineRule.runBlockingTest {
             val trxList = DummyData.transactions1
             val trxHistoryList = DummyData.trxHistoryList
-            Mockito.doReturn(Result.Success(trxList))
+            doReturn(Result.Success(trxList))
                 .`when`(repository)
                 .getTransactions()
 
@@ -112,7 +116,7 @@ class DashboardVMTest {
     @Test
     fun `get transaction history list failed`() {
         testCoroutineRule.runBlockingTest {
-            Mockito.doReturn(Result.Error(0, DummyData.exception))
+            doReturn(Result.Error(0, DummyData.exception))
                 .`when`(repository)
                 .getTransactions()
 
@@ -126,6 +130,25 @@ class DashboardVMTest {
             verify(observerTrxHistoryList).onChanged(ScreenState.Loading)
             verify(observerTrxHistoryList).onChanged(ScreenState.Error(DummyData.exception))
             viewModel.trxHistoryList.removeObserver(observerTrxHistoryList)
+        }
+    }
+
+    @Test
+    fun `logout successfully`() {
+        testCoroutineRule.runBlockingTest {
+            doReturn(Result.Success(Unit))
+                .`when`(repository)
+                .logout()
+
+            viewModel.logout()
+            viewModel.logoutResult.observeForever(observerLogoutResult)
+
+            runBlockingTest {
+                verify(repository).logout()
+            }
+
+            verify(observerLogoutResult).onChanged(Unit)
+            viewModel.logoutResult.removeObserver(observerLogoutResult)
         }
     }
 }
