@@ -55,7 +55,7 @@ class TransferActivity : AppCompatActivity() {
         }
 
         tvPayeeName.setOnClickListener {
-            PayeeListFragment().show(supportFragmentManager, PayeeListFragment.TAG)
+            PayeeListDialogFragment().show(supportFragmentManager, PayeeListDialogFragment.TAG)
         }
 
         btnTransfer.setOnClickListener {

@@ -15,7 +15,7 @@ import com.project.bankingapp.feature.transfer.adapter.PayeeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PayeeListFragment : DialogFragment() {
+class PayeeListDialogFragment : DialogFragment() {
 
     companion object {
         const val TAG = "df_payee_list"
