@@ -1,6 +1,7 @@
 package com.project.bankingapp.common.di
 
 import com.project.bankingapp.data.BankingService
+import com.project.bankingapp.data.local.AuthenticationPref
 import com.project.bankingapp.repository.BankingRepository
 import com.project.bankingapp.repository.BankingRepositoryImpl
 import dagger.Module
@@ -14,7 +15,10 @@ import dagger.hilt.components.SingletonComponent
 class RepositoryModule {
 
     @Provides
-    fun provideBankingRepository(service: BankingService): BankingRepository {
-        return BankingRepositoryImpl(service)
+    fun provideBankingRepository(
+        authenticationPref: AuthenticationPref,
+        service: BankingService
+    ): BankingRepository {
+        return BankingRepositoryImpl(authenticationPref, service)
     }
 }

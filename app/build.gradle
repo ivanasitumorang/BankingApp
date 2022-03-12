@@ -97,4 +97,7 @@ dependencies {
     // debugger
     debugImplementation "com.readystatesoftware.chuck:library:1.1.0"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:1.1.0"
+
+    // jwt token parser
+    implementation 'com.auth0.android:jwtdecode:2.0.1'
 }

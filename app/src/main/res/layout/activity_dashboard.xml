@@ -64,10 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="SGD 21,421.33"
                 android:textColor="@color/brown_700"
                 android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="SGD 21,421.33" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -78,12 +78,13 @@
                 android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAccountNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="3212-321-9923"
                 android:textColor="@color/brown_700"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="3212-321-9923" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -94,16 +95,32 @@
                 android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAccounName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Donald Trump"
                 android:textColor="@color/brown_700"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Donald Trump" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/loadingSummary"
+        style="@style/SpinKitView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/purple_300"
+        app:SpinKit_Style="CubeGrid"
+        app:layout_constraintBottom_toBottomOf="@+id/cvSummary"
+        app:layout_constraintEnd_toStartOf="@+id/gHeadlineEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cvSummary"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTrxHistoryLabel"
@@ -111,8 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Your Transaction History"
         android:paddingBottom="4dp"
+        android:text="Your Transaction History"
         android:textColor="@color/brown_700"
         android:textSize="16sp"
         android:textStyle="bold"
