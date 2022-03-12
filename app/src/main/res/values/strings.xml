@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">BankingApp</string>
 
+    <string name="login_title">Login</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_btn_register">Register</string>
+
     <string name="dashboard_trx_item_expense">-%.2f</string>
     <string name="dashboard_trx_item_income">%.2f</string>
     <string name="dashboard_account_balance_label">You have</string>
