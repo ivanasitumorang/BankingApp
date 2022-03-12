@@ -1,7 +1,7 @@
 package com.project.bankingapp.data
 
-import com.project.bankingapp.base.BaseResponse
 import com.project.bankingapp.data.remote.LoginReq
+import com.project.bankingapp.data.remote.LoginRes
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -12,7 +12,7 @@ interface BankingService {
     @POST("login")
     suspend fun login(
         @Body loginReq: LoginReq
-    ): Response<BaseResponse>
+    ): Response<LoginRes>
 
     @POST("register")
     suspend fun register(): Response<*>

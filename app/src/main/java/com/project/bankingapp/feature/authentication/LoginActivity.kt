@@ -2,14 +2,21 @@ package com.project.bankingapp.feature.authentication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityLoginBinding
 import com.project.bankingapp.feature.dashboard.DashboardActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
+    private val viewModel by viewModels<AuthenticationVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,11 +24,29 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupUIListener()
+        setupDataObserver()
+    }
+
+    private fun setupDataObserver() {
+        viewModel.loginResult.observe(this) {
+            when (it) {
+                is ScreenState.Loading -> {
+                    toggleScreenState(enable = false)
+                }
+                is ScreenState.Success -> {
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    finish()
+                }
+                is ScreenState.Error -> {
+                    toggleScreenState(enable = true)
+                    showToast(it.exception.message.toString())
+                }
+            }
+        }
     }
 
     private fun setupUIListener() = with(binding) {
         btnLogin.setOnClickListener {
-            // todo: verify if form empty
             val username = etUsername.text.toString()
             val password = etPassword.text.toString()
 
@@ -31,10 +56,8 @@ class LoginActivity : AppCompatActivity() {
             tilUsername.isErrorEnabled = !usernameValid
             tilPassword.isErrorEnabled = !passwordValid
 
-            if (username == "test" && password == "asdasd") {
-                // todo : show loading
-                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                finish()
+            if (usernameValid && passwordValid) {
+                viewModel.login(username, password)
             } else {
                 if (!usernameValid) {
                     tilUsername.error = "Username is required"
@@ -48,5 +71,13 @@ class LoginActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             showToast("click button register -> navigate")
         }
+    }
+
+    private fun toggleScreenState(enable: Boolean) = with(binding) {
+        tilUsername.isEnabled = enable
+        tilPassword.isEnabled = enable
+        btnRegister.isEnabled = enable
+        btnLogin.isEnabled = enable
+        loading.visibility = if (enable) View.GONE else View.VISIBLE
     }
 }
