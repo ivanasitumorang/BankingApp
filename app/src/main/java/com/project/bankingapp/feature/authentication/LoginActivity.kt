@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.project.bankingapp.R
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityLoginBinding
@@ -60,16 +61,16 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(username, password)
             } else {
                 if (!usernameValid) {
-                    tilUsername.error = "Username is required"
+                    tilUsername.error = getString(R.string.form_username_error)
                 }
                 if (!passwordValid) {
-                    tilPassword.error = "Password is required"
+                    tilPassword.error = getString(R.string.form_password_error)
                 }
             }
         }
 
         btnRegister.setOnClickListener {
-            showToast("click button register -> navigate")
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
     }
 
