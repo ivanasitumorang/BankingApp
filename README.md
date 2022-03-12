@@ -37,7 +37,5 @@ username = ivana
 password = ivana
 ```
 
-### Screens
-images here
 
 
