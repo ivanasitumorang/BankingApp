@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="Logout"
+        android:text="@string/dashboard_logout"
         android:textColor="@color/peach_400"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -55,7 +55,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You have"
+                android:text="@string/dashboard_account_balance_label"
                 android:textColor="@color/brown_700"
                 android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Account No"
+                android:text="@string/dashboard_account_no_label"
                 android:textColor="@color/brown_300"
                 android:textSize="12sp" />
 
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Account Holder"
+                android:text="@string/dashboard_account_name_label"
                 android:textColor="@color/brown_300"
                 android:textSize="12sp" />
 
@@ -129,7 +129,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:paddingBottom="4dp"
-        android:text="Your Transaction History"
+        android:text="@string/dashboard_transaction_history_label"
         android:textColor="@color/brown_700"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -172,7 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="16dp"
-        android:text="Make Transfer"
+        android:text="@string/dashboard_btn_transfer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

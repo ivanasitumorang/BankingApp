@@ -3,4 +3,11 @@
 
     <string name="dashboard_trx_item_expense">-%.2f</string>
     <string name="dashboard_trx_item_income">%.2f</string>
+    <string name="dashboard_account_balance_label">You have</string>
+    <string name="dashboard_account_balance">SGD %.2f</string>
+    <string name="dashboard_account_no_label">Account No</string>
+    <string name="dashboard_account_name_label">Account Holder</string>
+    <string name="dashboard_transaction_history_label">Your Transaction History</string>
+    <string name="dashboard_logout">Logout</string>
+    <string name="dashboard_btn_transfer">Make Transfer</string>
 </resources>

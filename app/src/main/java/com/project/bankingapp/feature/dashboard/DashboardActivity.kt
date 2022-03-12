@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.project.bankingapp.R
 import com.project.bankingapp.base.ScreenState
 import com.project.bankingapp.common.showToast
 import com.project.bankingapp.databinding.ActivityDashboardBinding
@@ -67,7 +68,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun populateAccountSummary(data: AccountSummary) = with(binding) {
-        tvAccountBalance.text = "SGD ${data.balance}"
+        tvAccountBalance.text = getString(R.string.dashboard_account_balance, data.balance)
         tvAccountNo.text = data.accountNo
         tvAccounName.text = data.name
     }
