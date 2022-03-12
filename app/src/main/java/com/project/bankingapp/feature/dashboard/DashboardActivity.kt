@@ -12,6 +12,7 @@ import com.project.bankingapp.databinding.ActivityDashboardBinding
 import com.project.bankingapp.feature.authentication.LoginActivity
 import com.project.bankingapp.feature.dashboard.adapter.TransactionHistoryAdapter
 import com.project.bankingapp.feature.dashboard.dto.AccountSummary
+import com.project.bankingapp.feature.transfer.TransferActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -88,8 +89,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         btnTransfer.setOnClickListener {
-            viewModel.getTransactionHistoryList()
-            showToast("navigate to page transfer")
+            startActivity(Intent(this@DashboardActivity, TransferActivity::class.java))
         }
     }
 }

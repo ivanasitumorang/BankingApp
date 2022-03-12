@@ -5,6 +5,8 @@
     <string name="form_password_error">Password is required</string>
     <string name="form_confirm_password_not_match_error">Confirm password not match</string>
     <string name="form_confirm_password_error">Confirm password is required</string>
+    <string name="form_payee_error">Payee is required</string>
+    <string name="form_amount_error">Amount is required</string>
 
     <string name="login_title">Login</string>
     <string name="login_username_hint">Username</string>

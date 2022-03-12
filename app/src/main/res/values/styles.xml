@@ -13,4 +13,17 @@
         <item name="android:paddingBottom">16dp</item>
     </style>
 
+    <style name="Widget.Dropdown.Normal" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="endIconTint">@color/brown_700</item>
+        <item name="endIconDrawable">@drawable/ic_down</item>
+        <item name="android:textColorHint">@color/brown_700</item>
+    </style>
+
+    <style name="Widget.TextField.Normal" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:textColorHint">@color/brown_700</item>
+        <item name="boxStrokeColor">@color/brown_300</item>
+    </style>
+
 </resources>
